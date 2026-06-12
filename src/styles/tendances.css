@@ -36,8 +36,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* ⭐ Perspective ajoutée pour activer la 3D */
   perspective: 900px;
 }
 
@@ -56,8 +54,6 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-
-  /* ⭐ L’effet 3D sera appliqué via .img-3d dans le JSX */
 }
 
 
@@ -85,13 +81,13 @@
 }
 
 
-/* Titre */
+/* Titre (⭐ corrigé : même taille + même violet que Ressources) */
 .tendances-title {
   font-family: "Roboto", sans-serif;
-  font-size: 40px;
+  font-size: 62px;      /* ⭐ même taille que la section Ressources */
   font-weight: 800;
-  line-height: 120%;
-  color: #FFFFFF;
+  line-height: 100%;    /* ⭐ même densité visuelle */
+  color: #C084FC;       /* ⭐ même violet que Ressources */
 }
 
 
@@ -114,20 +110,16 @@
   min-width: 220px;
   height: 48px;
   padding: 0 18px;
-
   background-color: transparent;
   border: none;
   color: #FFFFFF;
-
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 500;
   white-space: nowrap;
-
   display: flex;
   align-items: center;
   gap: 12px;
-
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -153,7 +145,7 @@
   }
 
   .tendances-title {
-    font-size: 32px;
+    font-size: 48px; /* cohérent avec Ressources */
   }
 
   .tendances-text {
@@ -181,8 +173,8 @@
   }
 
   .tendances-title {
-    font-size: 26px;
-    line-height: 120%;
+    font-size: 34px; /* cohérent avec Ressources mobile */
+    line-height: 100%;
   }
 
   .tendances-caption {

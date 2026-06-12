@@ -20,7 +20,7 @@ html, body {
 
 
 /* ============================
-   CONTAINER CENTRAL
+   CONTAINER CENTRAL (SITE NORMAL)
    ============================ */
 
 .container {
@@ -103,17 +103,74 @@ h1, h2, h3, h4, h5, h6, p {
   100% { transform: scale(1) rotateX(0deg); }
 }
 
-/* ⭐ Classe réutilisable pour toutes les images du site */
 .img-3d {
   animation: depthLoop 5s ease-in-out infinite;
   transform-style: preserve-3d;
-
-  /* ⭐ Optimisé pour le parallax */
   transition: transform 0.4s ease;
   will-change: transform;
 }
 
-/* ⭐ Effet hover subtil (combo parfait avec le parallax) */
 .img-3d:hover {
   transform: translateY(-6px) scale(1.02);
+}
+
+
+/* ============================
+   LAYOUTS
+   ============================ */
+
+.app-layout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout normal */
+.layout-default .main-container {
+  flex: 1;
+  padding-top: 80px;
+}
+
+/* Layout IA (ProjectDetail) */
+.layout-ia {
+  height: 100vh;
+  overflow: hidden; /* empêche le scroll global */
+}
+
+.main-ia {
+  flex: 1;
+  height: 100%;
+  overflow: hidden; /* le scroll doit être interne au chat */
+}
+
+
+/* ============================
+   LIENS ANIMÉS
+   ============================ */
+
+.blink-link {
+  color: #8b5cf6;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.35; }
+  100% { opacity: 1; }
+}
+
+
+/* ============================
+   FIX CRITIQUE : LAYOUT IA
+   ============================ */
+
+/* Empêche .container de rétrécir le layout IA */
+.layout-ia .container {
+  max-width: 100% !important;
+  padding: 0 !important;
+  width: 100% !important;
 }

@@ -6,19 +6,64 @@
   width: 100%;
   background-color: #0F172A;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 0 0 10px 0;
 }
 
 
 /* ============================
-   RECTANGLE PRINCIPAL
+   HEADER FULL WIDTH (titre au-dessus de l'image)
+   ============================ */
+
+.ressources-header {
+  width: 100%;
+  max-width: 1440px;
+  padding: 30px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ressources-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.ressources-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 100%;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.ressources-title .violet {
+  color: #C084FC;
+}
+
+.ressources-title .line1,
+.ressources-title .line2 {
+  display: block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================
+   RECTANGLE PRINCIPAL (2 colonnes)
    ============================ */
 
 .ressources-box {
   width: 100%;
   max-width: 1440px;
-  padding: 30px 0;
+  padding: 10px 0 30px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,37 +81,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-
-/* ============================
-   SOUS-TITRE
-   ============================ */
-
-.ressources-subtitle {
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-}
-
-
-/* ============================
-   GRAND TITRE
-   ============================ */
-
-.ressources-title {
-  font-family: "Roboto", sans-serif;
-  font-size: 68px;
-  font-weight: 800;
-  line-height: 110%;
-  color: #FFFFFF;
-}
-
-.ressources-title .violet {
-  color: #C084FC;
 }
 
 
@@ -94,20 +108,16 @@
   min-width: 240px;
   height: 52px;
   padding: 0 22px;
-
   background-color: transparent;
   border: none;
   color: #FFFFFF;
-
   font-family: "Roboto", sans-serif;
   font-size: 19px;
   font-weight: 500;
   white-space: nowrap;
-
   display: flex;
   align-items: center;
   gap: 14px;
-
   cursor: pointer;
   transition: 0.2s ease;
 }
@@ -175,10 +185,11 @@
 .ressources-right {
   width: 100%;
   max-width: 632px;
+  aspect-ratio: 3 / 2; /* ⭐ même ratio que l’ancienne image 1536x1024 */
   background: #FFFFFF;
   border-radius: 20px;
 
-  box-shadow: 
+  box-shadow:
     0px 0px 10px 0px #00000012,
     0px 20px 25px -5px #0000001A;
 
@@ -186,7 +197,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
   perspective: 900px;
 }
 
@@ -214,8 +224,8 @@
 
 .ressources-image {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover; /* ⭐ remplit le cadre comme l’ancienne image */
   border-radius: 20px;
 }
 
@@ -232,6 +242,11 @@
   }
 
   .ressources-title {
+    font-size: 48px;
+  }
+
+  .ressources-title .line1,
+  .ressources-title .line2 {
     font-size: 48px;
   }
 
@@ -257,7 +272,12 @@
 
   .ressources-title {
     font-size: 34px;
-    line-height: 120%;
+    line-height: 100%;
+  }
+
+  .ressources-title .line1,
+  .ressources-title .line2 {
+    font-size: 34px;
   }
 
   .ressources-subtitle {

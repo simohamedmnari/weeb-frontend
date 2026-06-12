@@ -1,11 +1,10 @@
 /* ============================
    FOOTER GLOBAL
-   ============================ */
-
+============================ */
 .footer {
   width: 100%;
-  background: #FFFFFF;
-  border-top: 1px solid #CBD5E1;
+  background: #ffffff;
+  border-top: 1px solid #cbd5e1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,29 +12,25 @@
   box-sizing: border-box;
 }
 
-
 /* ============================
-   BLOC SUPÉRIEUR (COLONNES)
-   ============================ */
-
+   BLOC SUPÉRIEUR
+============================ */
 .footer-top {
   width: 100%;
   max-width: 1280px;
   padding: 48px 0;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 1px solid #e2e8f0;
 
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
-  flex-wrap: nowrap; /* 🔥 7 blocs sur une ligne */
+  flex-wrap: nowrap;
 }
 
-
 /* ============================
-   COLONNES (7 BLOCS ALIGNÉS)
-   ============================ */
-
+   COLONNES
+============================ */
 .footer-col {
   flex: 1 1 14%;
   max-width: 14%;
@@ -43,44 +38,37 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }
 
-
 /* ============================
-   LOGO (weeb)
-   ============================ */
-
+   LOGO
+============================ */
 .footer-logo {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 32px;
   line-height: 110%;
-  color: #0F172A !important;
+  color: #0f172a !important;
   padding-top: 6px;
 }
 
-
 /* ============================
-   TITRES DES COLONNES
-   ============================ */
-
+   TITRES
+============================ */
 .footer-title {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #94A3B8;
+  color: #94a3b8;
   margin: 0;
   padding-top: 6px;
   min-height: 28px;
 }
 
-
 /* ============================
-   LIENS (MARGES RÉDUITES)
-   ============================ */
-
+   LIENS
+============================ */
 .footer-links {
   list-style: none;
   padding: 8px 0 0 0;
@@ -93,25 +81,25 @@
 .footer-links li {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  color: #0F172A;
+  color: #0f172a;
   padding: 4px 0;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .footer-links li:hover {
   opacity: 0.7;
+  transform: translateX(2px);
 }
 
-
 /* ============================
-   BLOC INFÉRIEUR
-   ============================ */
-
+   BAS DU FOOTER
+============================ */
 .footer-bottom {
   width: 100%;
   max-width: 1280px;
   padding: 32px 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,14 +110,12 @@
 .footer-copy {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
-  color: #0F172A;
+  color: #0f172a;
 }
-
 
 /* ============================
    ICONES SOCIALES
-   ============================ */
-
+============================ */
 .footer-socials {
   display: flex;
   gap: 20px;
@@ -137,20 +123,19 @@
 
 .footer-icon {
   font-size: 24px;
-  color: #0F172A;
+  color: #0f172a;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .footer-icon:hover {
   opacity: 0.7;
+  transform: scale(1.1);
 }
 
-
 /* ============================
-   RESPONSIVE TABLETTE (≤ 900px)
-   ============================ */
-
+   RESPONSIVE TABLETTE
+============================ */
 @media (max-width: 900px) {
   .footer-top {
     flex-wrap: wrap;
@@ -169,11 +154,9 @@
   }
 }
 
-
 /* ============================
-   RESPONSIVE MOBILE (≤ 600px)
-   ============================ */
-
+   RESPONSIVE MOBILE
+============================ */
 @media (max-width: 600px) {
   .footer {
     padding: 0 16px;
@@ -188,13 +171,11 @@
     width: 100%;
     max-width: 100%;
     flex: 1 1 100%;
-    min-height: auto;
   }
 
   .footer-title {
     font-size: 16px;
     padding-top: 2px;
-    margin-bottom: 0;
   }
 
   .footer-links {
@@ -204,7 +185,6 @@
 
   .footer-links li {
     font-size: 15px;
-    padding: 4px 0;
   }
 
   .footer-bottom {

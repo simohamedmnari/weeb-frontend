@@ -7,8 +7,6 @@ import Waves from "../assets/Waves.png";
 import ArtVenue from "../assets/ArtVenue.png";
 
 export default function Trust() {
-  console.log("TRUST RENDU");
-
   return (
     <section className="trust">
       <div className="trust-box">

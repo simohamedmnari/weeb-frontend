@@ -1,4 +1,22 @@
-# Logs
+# ============================
+# ENVIRONNEMENT
+# ============================
+.env
+.env.*
+!.env.example
+.vercel
+
+# ============================
+# NODE / VITE
+# ============================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ============================
+# LOGS
+# ============================
 logs
 *.log
 npm-debug.log*
@@ -7,15 +25,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# ============================
+# EDITORS
+# ============================
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -23,6 +38,7 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
-.env.local
-.vercel
+# ============================
+# SYSTEME
+# ============================
+Thumbs.db

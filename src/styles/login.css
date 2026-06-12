@@ -1,7 +1,6 @@
 /* ============================
    WRAPPER GLOBAL
-   ============================ */
-
+============================ */
 .login-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -9,14 +8,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0 80px 0;
+  padding: 40px 0 80px;
 }
-
 
 /* ============================
    SECTION FIGMA LOGIN
-   ============================ */
-
+============================ */
 .login-figma-box {
   width: 100%;
   max-width: 420px;
@@ -34,20 +31,22 @@
   align-items: center;
 }
 
-
-/* TITRE — IDENTIQUE À REGISTER */
+/* ============================
+   TITRE
+============================ */
 .login-figma-title {
   font-family: "Roboto", sans-serif;
-  font-size: 40px;          /* même taille que Register */
+  font-size: 40px;
   font-weight: 800;
   line-height: 110%;
-  text-align: center;       /* centré */
+  text-align: center;
   color: #FFFFFF;
   margin-bottom: 10px;
 }
 
-
-/* FORMULAIRE */
+/* ============================
+   FORMULAIRE
+============================ */
 .login-figma-form {
   display: flex;
   flex-direction: column;
@@ -55,8 +54,9 @@
   gap: 26px;
 }
 
-
-/* CHAMPS */
+/* ============================
+   CHAMPS
+============================ */
 .login-field {
   width: 100%;
   max-width: 260px;
@@ -92,8 +92,9 @@
   background-color: #C084FC;
 }
 
-
-/* BOUTON */
+/* ============================
+   BOUTON
+============================ */
 .login-figma-button {
   width: 180px;
   height: 48px;
@@ -106,15 +107,27 @@
   border: 2px solid #9333EA;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.25s ease;
 }
 
 .login-figma-button:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
 }
 
+/* ============================
+   ERREUR
+============================ */
+.login-error {
+  color: #F87171;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -10px;
+}
 
-/* LIEN MOT DE PASSE OUBLIÉ */
+/* ============================
+   MOT DE PASSE OUBLIÉ
+============================ */
 .login-forgot {
   font-family: "Inter", sans-serif;
   font-size: 13px;
@@ -122,14 +135,17 @@
   text-align: center;
   color: #FFFFFF;
   text-decoration: none;
+  transition: 0.2s ease;
 }
 
 .login-forgot:hover {
   text-decoration: underline;
+  opacity: 0.85;
 }
 
-
-/* TEXTE CRÉER UN COMPTE */
+/* ============================
+   CRÉER UN COMPTE
+============================ */
 .login-create {
   font-family: "Poppins", sans-serif;
   font-size: 13px;
@@ -144,4 +160,9 @@
   font-weight: 700;
   color: #FFFFFF;
   text-decoration: underline;
+  transition: 0.2s ease;
+}
+
+.login-create a:hover {
+  opacity: 0.85;
 }

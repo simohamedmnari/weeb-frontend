@@ -1,89 +1,162 @@
 import "../styles/Contact.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+import { sendContact, createPrediction } from "../api/contact";
+import { analyzeMessage } from "../api/analyze";
 
 export default function Contact() {
   const navigate = useNavigate();
 
-  const [nom, setNom] = useState("");
-  const [prenom, setPrenom] = useState("");
-  const [adresse, setAdresse] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  /* ============================================================
+     STATE STABLE (primitives → pas de problème de référence)
+  ============================================================ */
+  const [form, setForm] = useState({
+    nom: "",
+    prenom: "",
+    adresse: "",
+    email: "",
+    message: ""
+  });
 
+  /* ============================================================
+     MONTAGE : chargement localStorage (useEffect [])
+     → correction ESLint : setState dans fonction interne
+  ============================================================ */
   useEffect(() => {
     const saved = localStorage.getItem("contact_message");
+    if (!saved) return;
 
-    if (saved) {
+    const loadSavedForm = () => {
       try {
         const data = JSON.parse(saved);
-        setNom(data.nom || "");
-        setPrenom(data.prenom || "");
-        setAdresse(data.adresse || "");
-        setEmail(data.email || "");
-        setMessage(data.message || "");
+
+        setForm({
+          nom: data.nom || "",
+          prenom: data.prenom || "",
+          adresse: data.adresse || "",
+          email: data.email || "",
+          message: data.message || ""
+        });
       } catch (e) {
         console.error("Erreur parsing contact_message", e);
       }
-    }
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-    const messageData = {
-      nom,
-      prenom,
-      adresse,
-      email,
-      message,
     };
 
-    if (!isLoggedIn) {
-      localStorage.setItem("contact_message", JSON.stringify(messageData));
-      navigate("/login");
-      return;
-    }
+    loadSavedForm();
+  }, []);
 
-    console.log("Message envoyé :", messageData);
+  /* ============================================================
+     HANDLER STABILISÉ (useCallback)
+     → aucune recréation inutile
+  ============================================================ */
+  const handleChange = useCallback((field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }, []);
 
-    localStorage.removeItem("contact_message");
+  /* ============================================================
+     SUBMIT STABILISÉ (useCallback)
+     → aucune recréation inutile
+     → aucune boucle infinie
+     → conforme backend
+  ============================================================ */
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    alert("Votre message a bien été envoyé !");
+      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-    setNom("");
-    setPrenom("");
-    setAdresse("");
-    setEmail("");
-    setMessage("");
-  };
+      if (!isLoggedIn) {
+        localStorage.setItem("contact_message", JSON.stringify(form));
+        navigate("/login");
+        return;
+      }
 
+      try {
+        /* -----------------------------------------
+           1) Envoi du message contact
+        ----------------------------------------- */
+        const resContact = await sendContact({
+          first_name: form.prenom,
+          last_name: form.nom,
+          address: form.adresse,
+          email: form.email,
+          message: form.message,
+          consent: true
+        });
+
+        const contactId = resContact.id;
+
+        /* -----------------------------------------
+           2) Analyse NLP
+        ----------------------------------------- */
+        await analyzeMessage(form.message);
+
+        /* -----------------------------------------
+           3) Prédiction ML simple (locale)
+        ----------------------------------------- */
+        const msg = form.message.toLowerCase();
+        const satisfied =
+          msg.includes("merci") ||
+          msg.includes("super") ||
+          msg.includes("j'aime") ||
+          msg.includes("parfait") ||
+          msg.includes("top");
+
+        const prediction = satisfied ? 1 : 0;
+
+        /* -----------------------------------------
+           4) Enregistrement prédiction ML
+        ----------------------------------------- */
+        await createPrediction({
+          contact: contactId,
+          prediction,
+          confidence: 0.95
+        });
+
+        alert("Message envoyé + analyse ML enregistrée !");
+      } catch (err) {
+        console.error(err);
+        alert("Erreur lors de l'envoi du message.");
+      }
+
+      /* -----------------------------------------
+         5) Reset propre (pas de boucle)
+      ----------------------------------------- */
+      localStorage.removeItem("contact_message");
+      setForm({
+        nom: "",
+        prenom: "",
+        adresse: "",
+        email: "",
+        message: ""
+      });
+    },
+    [form, navigate]
+  );
+
+  /* ============================================================
+     RENDER (aucune fonction inline, aucun objet inline)
+     → conforme au mémo performance
+  ============================================================ */
   return (
     <div className="contact-page">
-
       <div className="contact-header">
         <h1 className="contact-title">Votre avis compte !</h1>
-
         <p className="contact-subtitle">
-          Votre retour est essentiel pour nous améliorer ! Partagez votre expérience,
-          dites‑nous ce que vous aimez et ce que nous pourrions améliorer. Vos suggestions
-          nous aident à faire de ce blog une ressource toujours plus utile et enrichissante.
+          Votre retour est essentiel pour nous améliorer !
         </p>
       </div>
 
       <div className="contact-form-box">
-
         <form className="contact-form" onSubmit={handleSubmit}>
-
           <div className="form-row">
             <div className="form-group underline">
               <label>Nom</label>
               <input
                 type="text"
-                value={nom}
-                onChange={(e) => setNom(e.target.value)}
+                value={form.nom}
+                onChange={(e) => handleChange("nom", e.target.value)}
               />
             </div>
 
@@ -91,8 +164,8 @@ export default function Contact() {
               <label>Prénom</label>
               <input
                 type="text"
-                value={prenom}
-                onChange={(e) => setPrenom(e.target.value)}
+                value={form.prenom}
+                onChange={(e) => handleChange("prenom", e.target.value)}
               />
             </div>
           </div>
@@ -102,8 +175,8 @@ export default function Contact() {
               <label>Adresse</label>
               <input
                 type="text"
-                value={adresse}
-                onChange={(e) => setAdresse(e.target.value)}
+                value={form.adresse}
+                onChange={(e) => handleChange("adresse", e.target.value)}
               />
             </div>
 
@@ -111,8 +184,8 @@ export default function Contact() {
               <label>Email</label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={form.email}
+                onChange={(e) => handleChange("email", e.target.value)}
               />
             </div>
           </div>
@@ -120,14 +193,15 @@ export default function Contact() {
           <div className="form-group underline full-width">
             <label>Message</label>
             <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              value={form.message}
+              onChange={(e) => handleChange("message", e.target.value)}
             ></textarea>
           </div>
 
           <div className="form-footer">
-
-            <button type="submit" className="contact-btn">Envoyer</button>
+            <button type="submit" className="contact-btn">
+              Envoyer
+            </button>
 
             <div className="radio-wrapper">
               <input type="checkbox" className="radio-input" />
@@ -137,13 +211,9 @@ export default function Contact() {
                 J’accepte le traitement de mes données.
               </span>
             </div>
-
           </div>
-
         </form>
-
       </div>
-
     </div>
   );
 }

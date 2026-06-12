@@ -1,5 +1,5 @@
 import "../styles/hero.css";
-import heroIllustration from "../assets/Heroillustration.png";
+import heroIllustration from "../assets/PortraitSiMNARI_WeebPremium.png";
 import { Link } from "react-router-dom";
 
 export default function Hero() {
@@ -7,7 +7,7 @@ export default function Hero() {
     <section
       className="hero"
       role="region"
-      aria-label="Section d’introduction du site présentant les ressources numériques"
+      aria-label="Section d’introduction du site présentant l’accompagnement IA"
     >
       <div className="container">
         <div className="hero-box">
@@ -17,34 +17,37 @@ export default function Hero() {
           ============================ */}
           <div className="hero-content">
             <h1 className="hero-title">
-              Explorez le <span className="hero-web">Web</span> sous toutes<br />
-              <span className="hero-facettes">ses facettes</span>
+              <span className="line-1">Votre assistant IA</span><br />
+              <span className="hero-web">pour créer vos articles</span><br />
+              <span className="hero-facettes">et accélérer votre rédaction</span>
             </h1>
 
             <p className="hero-text">
-              Le numérique évolue vite, et nous vous aidons à comprendre les solutions
-              qui transforment les organisations : outils modernes, automatisation,
-              optimisation des services et nouvelles pratiques digitales. Que vous
-              souhaitiez gagner en efficacité ou moderniser vos processus, explorez
-              des contenus pensés pour vous accompagner.
+              <strong>Weeb est un assistant IA conçu pour vous aider à rédiger, améliorer et structurer vos articles</strong>{" "}
+              en quelques secondes. Vous créez, modifiez et organisez vos contenus dans une interface moderne,
+              avec un assistant qui vous guide étape par étape.
+              <br /><br />
+              Weeb analyse vos idées, comprend votre style et vous propose des améliorations, des reformulations
+              et des plans adaptés. Grâce à son <strong>IA intégrée</strong>, vous gagnez du temps, vous progressez plus vite
+              et vous produisez des contenus professionnels.
             </p>
 
             <div className="hero-buttons">
               <Link
-                to="/ressources"
+                to="/membre/projets/1"
                 className="btn-primary hero-btn"
-                aria-label="Explorer toutes les ressources disponibles sur la plateforme"
+                aria-label="Créer votre premier article"
               >
-                Explorer les ressources
+                Créer votre premier article
               </Link>
 
               <Link
-                to="/register"
+                to="/membre/projets/1"
                 className="btn-outline hero-btn hero-btn-newsletter"
-                aria-label="S’abonner à la newsletter pour recevoir les nouveautés"
+                aria-label="Découvrir l’assistant IA"
               >
-                <span>S’abonner à la</span>
-                <span>newsletter</span>
+                <span>Découvrir l’assistant</span>
+                <span>IA intégré</span>
               </Link>
             </div>
           </div>
@@ -54,24 +57,22 @@ export default function Hero() {
           ============================ */}
           <div className="hero-image-wrapper">
 
-            {/* Image principale */}
             <img
               src={heroIllustration}
-              alt="Illustration représentant une interface web moderne avec des éléments numériques"
+              alt="Portrait professionnel de Si M'NARI dans un bureau moderne, style premium"
               className="hero-image img-3d"
             />
 
-            {/* Mots flottants — décoratifs, ignorés par les lecteurs d’écran */}
             <div
               className="floating-words"
               aria-hidden="true"
             >
-              <span className="word">Création de site IA</span>
-              <span className="word">Tunnels de vente</span>
-              <span className="word">Automatisation</span>
-              <span className="word">Robot humanoïde</span>
-              <span className="word">Audit IA</span>
-              <span className="word">Acquisition clients</span>
+              <span className="word">Rédaction IA</span>
+              <span className="word">Amélioration</span>
+              <span className="word">Reformulation</span>
+              <span className="word">Plan d’article</span>
+              <span className="word">Génération IA</span>
+              <span className="word">Articles pro</span>
             </div>
 
           </div>

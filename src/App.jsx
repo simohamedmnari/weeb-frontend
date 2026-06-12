@@ -7,16 +7,20 @@ import { useEffect } from "react";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/ScrollToTop";
 
-// Pages
+// Pages publiques
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
-import Login from "./pages/Login";
-import About from "./pages/About";
-import Ressources from "./pages/Ressources";
-import Register from "./pages/Register";
+import CreerCompte from "./pages/CreerCompte";
 import ResetPassword from "./pages/ResetPassword";
 
+// Login
+import LogIn from "./components/LogIn";
+
+// Nouvelle page Assistant IA / Espace membre
+import DashboardIA from "./pages/DashboardIA";
+
 export default function App() {
+
   // Effet 3D sur les images
   useEffect(() => {
     const handleScroll = () => {
@@ -38,38 +42,22 @@ export default function App() {
 
       <Routes>
         <Route element={<Layout />}>
+
+          {/* Pages publiques */}
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/creer-compte" element={<CreerCompte />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/ressources" element={<Ressources />} />
+
+          {/* Assistant IA — PUBLIC */}
+          <Route
+            path="/membre/projets/:id"
+            element={<DashboardIA />}
+          />
+
         </Route>
       </Routes>
-
-      {/* 🔥 Bouton RESET TUNNEL (développement uniquement) */}
-      <button
-        onClick={() => {
-          localStorage.clear();
-          window.location.reload();
-        }}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          padding: "10px 15px",
-          background: "#9333EA",
-          color: "white",
-          borderRadius: "8px",
-          border: "none",
-          cursor: "pointer",
-          zIndex: 9999,
-          fontSize: "14px"
-        }}
-      >
-        RESET TUNNEL
-      </button>
     </>
   );
 }

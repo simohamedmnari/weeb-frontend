@@ -1,6 +1,6 @@
 import "../styles/tendances.css";
 import { FiArrowRight } from "react-icons/fi";
-import Shapes4 from "../assets/Shapes4.png";
+import GoGoGoIA from "../assets/GoGoGoIA.png";
 import { Link } from "react-router-dom";
 
 export default function SectionTendances() {
@@ -8,16 +8,16 @@ export default function SectionTendances() {
     <section
       className="tendances"
       role="region"
-      aria-label="Section présentant les tendances numériques et les évolutions du digital"
+      aria-label="Section présentant ce que vous allez créer avec Weeb"
     >
       <div className="tendances-box">
 
-        {/* Bloc gauche : carré + image */}
+        {/* Bloc gauche : image */}
         <div className="tendances-left">
           <div className="tendances-image-wrapper">
             <img
-              src={Shapes4}
-              alt="Illustration représentant les tendances numériques et les évolutions technologiques"
+              src={GoGoGoIA}
+              alt="Utilisateur rédigeant un article assisté par IA"
               className="tendances-image img-3d"
             />
           </div>
@@ -27,29 +27,31 @@ export default function SectionTendances() {
         <div className="tendances-right">
 
           <h3 className="tendances-caption">
-            Le numérique, un écosystème en constante évolution
+            Ce que vous allez créer
           </h3>
 
           <h2 className="tendances-title">
-            Restez informé des tendances essentielles
+            Des articles professionnels, clairs et optimisés
           </h2>
 
           <p className="tendances-text">
-            Chaque semaine, nous analysons les évolutions qui transforment les organisations :
-            modernisation des services, automatisation, intelligence artificielle,
-            amélioration de l’accueil et optimisation des processus. Une veille claire
-            et utile pour anticiper les changements du digital.
+            Avec Weeb, vous créez des <strong>articles complets</strong>, des 
+            <strong> contenus professionnels</strong>, des <strong>pages optimisées</strong>, 
+            des <strong>plans d’articles</strong> et des <strong>textes reformulés</strong> grâce à l’IA.
+            <br /><br />
+            Chaque article peut être <strong>amélioré</strong>, <strong>réécrit</strong>, 
+            <strong>structuré</strong> ou <strong>généré entièrement</strong> par l’assistant IA.
+            Votre assistant analyse votre style, comprend vos intentions et vous guide pour produire 
+            des contenus plus clairs, plus fluides et plus professionnels.
           </p>
 
-          {/* CTA vers la page ressources */}
           <Link
-            to="/ressources"
+            to="/membre/projets/1"
             className="tendances-btn"
-            aria-label="Explorer les ressources récentes et les dernières tendances numériques"
+            aria-label="Explorer ce que vous pouvez créer avec Weeb"
           >
-            Explorer les ressources récentes
+            Découvrir ce que vous pouvez créer
 
-            {/* Icône décorative ignorée par les lecteurs d’écran */}
             <FiArrowRight
               className="tendances-btn-icon"
               aria-hidden="true"
