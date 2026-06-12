@@ -9,7 +9,7 @@ export default function Contact() {
   const navigate = useNavigate();
 
   /* ============================================================
-     STATE STABLE (primitives → pas de problème de référence)
+     STATE STABLE
   ============================================================ */
   const [form, setForm] = useState({
     nom: "",
@@ -20,8 +20,7 @@ export default function Contact() {
   });
 
   /* ============================================================
-     MONTAGE : chargement localStorage (useEffect [])
-     → correction ESLint : setState dans fonction interne
+     MONTAGE : chargement localStorage
   ============================================================ */
   useEffect(() => {
     const saved = localStorage.getItem("contact_message");
@@ -47,18 +46,14 @@ export default function Contact() {
   }, []);
 
   /* ============================================================
-     HANDLER STABILISÉ (useCallback)
-     → aucune recréation inutile
+     HANDLER STABILISÉ
   ============================================================ */
   const handleChange = useCallback((field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   }, []);
 
   /* ============================================================
-     SUBMIT STABILISÉ (useCallback)
-     → aucune recréation inutile
-     → aucune boucle infinie
-     → conforme backend
+     SUBMIT STABILISÉ
   ============================================================ */
   const handleSubmit = useCallback(
     async (e) => {
@@ -88,30 +83,16 @@ export default function Contact() {
         const contactId = resContact.id;
 
         /* -----------------------------------------
-           2) Analyse NLP
+           2) Analyse NLP simple
         ----------------------------------------- */
         await analyzeMessage(form.message);
 
         /* -----------------------------------------
-           3) Prédiction ML simple (locale)
-        ----------------------------------------- */
-        const msg = form.message.toLowerCase();
-        const satisfied =
-          msg.includes("merci") ||
-          msg.includes("super") ||
-          msg.includes("j'aime") ||
-          msg.includes("parfait") ||
-          msg.includes("top");
-
-        const prediction = satisfied ? 1 : 0;
-
-        /* -----------------------------------------
-           4) Enregistrement prédiction ML
+           3) Prédiction ML — backend uniquement
+              (on n’envoie plus prediction/confidence)
         ----------------------------------------- */
         await createPrediction({
-          contact: contactId,
-          prediction,
-          confidence: 0.95
+          contact: contactId
         });
 
         alert("Message envoyé + analyse ML enregistrée !");
@@ -121,7 +102,7 @@ export default function Contact() {
       }
 
       /* -----------------------------------------
-         5) Reset propre (pas de boucle)
+         4) Reset propre
       ----------------------------------------- */
       localStorage.removeItem("contact_message");
       setForm({
@@ -136,8 +117,7 @@ export default function Contact() {
   );
 
   /* ============================================================
-     RENDER (aucune fonction inline, aucun objet inline)
-     → conforme au mémo performance
+     RENDER
   ============================================================ */
   return (
     <div className="contact-page">
