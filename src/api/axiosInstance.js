@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL + "/api/",
   withCredentials: false,
-  timeout: 15000,
+  timeout: 30000,
 });
 
 /* ============================
@@ -37,7 +37,7 @@ api.interceptors.request.use(
     const access = getAccessToken();
     const url = config.url || "";
 
-    // 🔥 NE PAS envoyer de token sur l'assistant IA (endpoint public)
+    // NE PAS envoyer de token sur l'assistant IA (endpoint public)
     if (url.startsWith("/assistant-ia")) {
       delete config.headers?.Authorization;
       return config;
