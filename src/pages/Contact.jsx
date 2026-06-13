@@ -88,11 +88,11 @@ export default function Contact() {
         await analyzeMessage(form.message);
 
         /* -----------------------------------------
-           3) Prédiction ML — backend uniquement
-              (on n’envoie plus prediction/confidence)
+           3) Prédiction ML — FIX : on envoie le texte !
         ----------------------------------------- */
         await createPrediction({
-          contact: contactId
+          contact: contactId,
+          text: form.message  
         });
 
         alert("Message envoyé + analyse ML enregistrée !");
