@@ -21,6 +21,9 @@ import DashboardIA from "./pages/DashboardIA";
 
 export default function App() {
 
+  // 🔥 Test Sentry Frontend (à retirer après la capture)
+  throw new Error("Test Sentry Frontend");
+
   // Effet 3D sur les images
   useEffect(() => {
     const handleScroll = () => {
